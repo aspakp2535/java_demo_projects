@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Management</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function getProductList() {
+            $.ajax({
+                url: "http://localhost:8080/products",
+                type: "GET",
+                success: function(response) {
+                    // Handle the response data
+                    console.log(response);
+                },
+                error: function(xhr, status, error) {
+                    // Handle the error
+                    console.error(error);
+                }
+            });
+        }
+
+        function createProduct() {
+            var product = {
+                id: "123",
+                name: "Sample Product"
+            };
+
+            $.ajax({
+                url: "http://localhost:8080/products",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(product),
+                success: function(response) {
+                    // Handle the response
+                    console.log(response);
+                },
+                error: function(xhr, status, error) {
+                    // Handle the error
+                    console.error(error);
+                }
+            });
+        }
+
+        // Add handlers for other CRUD operations (update and delete)
+
+    </script>
+</head>
+<body>
+    <button onclick="getProductList()">Get Product List</button>
+    <button onclick="createProduct()">Create Product</button>
+    <!-- Add buttons and handlers for other CRUD operations (update and delete) -->
+</body>
+</html>
